@@ -59,28 +59,28 @@ variable "cloud_armor_expr_rules" {
       match_expr  = "evaluatePreconfiguredExpr('sqli-stable', ['owasp-crs-v030001-id942251-sqli', 'owasp-crs-v030001-id942420-sqli', 'owasp-crs-v030001-id942431-sqli', 'owasp-crs-v030001-id942460-sqli', 'owasp-crs-v030001-id942421-sqli', 'owasp-crs-v030001-id942432-sqli', 'owasp-crs-v030001-id942200-sqli', 'owasp-crs-v030001-id942260-sqli', 'owasp-crs-v030001-id942340-sqli', 'owasp-crs-v030001-id942430-sqli'])"
     },
     {
-      description      = "Deny XSS Attacks"
-      action           = "deny(403)"
-      priority         = 2
-      match_expression = "evaluatePreconfiguredExpr('xss-stable')"
+      description = "Deny XSS Attacks"
+      action      = "deny(403)"
+      priority    = 2
+      match_expr  = "evaluatePreconfiguredExpr('xss-stable')"
     },
     {
-      description      = "Deny Local File Inclusion Attacks"
-      action           = "deny(403)"
-      priority         = 3
-      match_expression = "evaluatePreconfiguredExpr('lfi-stable')"
+      description = "Deny Local File Inclusion Attacks"
+      action      = "deny(403)"
+      priority    = 3
+      match_expr  = "evaluatePreconfiguredExpr('lfi-stable')"
     },
     {
-      description      = "Deny Remote Code Execution Attacks"
-      action           = "deny(403)"
-      priority         = 4
-      match_expression = "evaluatePreconfiguredExpr('rce-stable')"
+      description = "Deny Remote Code Execution Attacks"
+      action      = "deny(403)"
+      priority    = 4
+      match_expr  = "evaluatePreconfiguredExpr('rce-stable')"
     },
     {
-      description      = "Deny Remote File Inclusion Attacks"
-      action           = "deny(403)"
-      priority         = 5
-      match_expression = "evaluatePreconfiguredExpr('rfi-stable')"
+      description = "Deny Remote File Inclusion Attacks"
+      action      = "deny(403)"
+      priority    = 5
+      match_expr  = "evaluatePreconfiguredExpr('rfi-stable')"
     },
   ]
 }
