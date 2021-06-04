@@ -52,17 +52,35 @@ data "google_service_account" "svc_acct_data" {
 }
 
 locals {
-  svc_acct = var.create_service_acct_bool ? google_service_account.svc_acct_resource[0].email : data.google_service_account.svc_acct_data[0].email
+  svc_acct_email = var.create_service_acct_bool ? google_service_account.svc_acct_resource[0].email : data.google_service_account.svc_acct_data[0].email
 
   build_base_env_vars = {
     PROJECT_ID      = data.google_project.project.project_id
     CR_SERVICE_NAME = var.cr_service_name_str
     REGION          = var.cr_region_str
-    SERVICE_ACCT    = local.svc_acct
+    SERVICE_ACCT    = local.svc_acct_email
     TAG             = "initial"
   }
 
   build_env_vars = merge(local.build_base_env_vars, var.build_env_vars_dict)
+
+  svc_acct_roles_list = [
+    "roles/cloudbuild.builds.editor",
+    "roles/iam.serviceAccountUser",
+    "roles/run.admin",
+  ]
+}
+
+resource "google_project_iam_member" "assign_svc_role" {
+  project = data.google_project.project.project_id
+
+  for_each = toset(local.svc_acct_roles_list)
+  role     = each.value
+  member   = "serviceAccount:${local.svc_acct_email}"
+
+  depends_on = [
+    google_project_service.project_services
+  ]
 }
 
 resource "null_resource" "build_cr_service" {
