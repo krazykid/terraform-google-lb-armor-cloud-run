@@ -92,6 +92,7 @@ resource "null_resource" "build_cr_service" {
   depends_on = [
     google_project_service.project_services,
     google_service_account.svc_acct_resource,
+    google_project_iam_member.assign_svc_role,
     data.google_service_account.svc_acct_data,
   ]
 }
