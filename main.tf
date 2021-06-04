@@ -1,5 +1,5 @@
 data "google_project" "project" {
-  project_id = local.project_id
+  project_id = var.project_id
 }
 
 locals {
@@ -27,7 +27,6 @@ resource "google_project_service" "project_services" {
   service                    = each.value
   disable_dependent_services = true
 }
-
 
 resource "google_service_account" "svc_acct_resource" {
   project      = data.google_project.project.project_id

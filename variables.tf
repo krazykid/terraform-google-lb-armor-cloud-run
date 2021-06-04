@@ -1,3 +1,8 @@
+variable "project_id" {
+  type        = string
+  description = "GCP project ID to set up in"
+}
+
 variable "build_env_vars_dict" {
   type        = map(string)
   description = "Environment variables to set during the initial build of the CR container"
