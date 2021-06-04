@@ -44,12 +44,12 @@ variable "cloud_armor_preview_bool" {
 }
 
 variable "cloud_armor_expr_rules" {
-  type = list(map(object({
+  type = list(object({
     description = string
     action      = string
     priority    = number
     match_expr  = string
-  })))
+  }))
   description = "List of dictionaries that describe the Cloud Armor rules"
   default = [
     {
@@ -86,13 +86,13 @@ variable "cloud_armor_expr_rules" {
 }
 
 variable "cloud_armor_versioned_expr_rules" {
-  type = list(map(object({
+  type = list(object({
     description          = string
     action               = string
     priority             = number
     versioned_expr       = string
     config_src_ip_ranges = list(string)
-  })))
+  }))
   description = "List of dictionaries that describe Cloud Armor versioned_expr rules"
 
   default = [
