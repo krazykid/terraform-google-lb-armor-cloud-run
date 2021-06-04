@@ -52,7 +52,7 @@ data "google_service_account" "svc_acct_data" {
 }
 
 locals {
-  svc_acct = var.create_service_acct_bool ? google_service_account.svc_acct_resource.email : data.google_service_account.svc_acct_data.email
+  svc_acct = var.create_service_acct_bool ? google_service_account.svc_acct_resource[0].email : data.google_service_account.svc_acct_data[0].email
 
   build_base_env_vars = {
     PROJECT_ID      = data.google_project.project.project_id
