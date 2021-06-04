@@ -4,6 +4,7 @@ data "google_project" "project" {
 
 locals {
   gcp_services = [
+    "cloudbuild.googleapis.com",
     "cloudresourcemanager.googleapis.com",
     "containerregistry.googleapis.com",
     "containerscanning.googleapis.com",
@@ -19,6 +20,7 @@ locals {
   ]
 }
 
+
 resource "google_project_service" "project_services" {
   project    = data.google_project.project.project_id
   depends_on = [data.google_project.project]
@@ -27,6 +29,24 @@ resource "google_project_service" "project_services" {
   service                    = each.value
   disable_dependent_services = true
 }
+
+
+# Allow Cloud Build to execute Cloud Run and Service Account things
+resource "google_project_iam_member" "add_cloud_build_svc_roles" {
+  project = data.google_project.project.project_id
+  member  = "serviceAccount:${data.google_project.project.number}@cloudbuild.gserviceaccount.com"
+
+  for_each = toset([
+    "roles/run.admin",
+    "roles/iam.serviceAccountUser",
+  ])
+  role = each.value
+
+  depends_on = [
+    google_project_service.project_services,
+  ]
+}
+
 
 resource "google_service_account" "svc_acct_resource" {
   project      = data.google_project.project.project_id
@@ -93,6 +113,7 @@ resource "null_resource" "build_cr_service" {
     google_project_service.project_services,
     google_service_account.svc_acct_resource,
     google_project_iam_member.assign_svc_role,
+    google_project_iam_member.add_cloud_build_svc_roles,
     data.google_service_account.svc_acct_data,
   ]
 }
