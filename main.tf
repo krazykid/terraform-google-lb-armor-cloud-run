@@ -6,6 +6,7 @@ locals {
   gcp_services = [
     "cloudbuild.googleapis.com",
     "cloudresourcemanager.googleapis.com",
+    "compute.googleapis.com",
     "containerregistry.googleapis.com",
     "containerscanning.googleapis.com",
     "containerthreatdetection.googleapis.com",
@@ -16,7 +17,6 @@ locals {
     "oslogin.googleapis.com",
     "run.googleapis.com",
     "stackdriver.googleapis.com",
-
   ]
 }
 
