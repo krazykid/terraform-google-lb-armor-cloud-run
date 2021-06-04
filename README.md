@@ -7,6 +7,7 @@ This module deploys a Cloud Run service behind a GCP load balancer with Cloud Ar
 
 | `variable`                      |Required?| Type            | Default                | Description                          |
 |:--------------------------------|:-------:|:----------------|:----------------------:|:-------------------------------------|
+| `project_id`                    | Yes     | String          | (None)                 | GCP project ID to set up in          |
 | `build_env_vars_dict`           | Yes     | String          | (None)                 | Environment variables to set during the initial build of the CR container |
 | `cr_service_name_str`           | Yes     | String          | (None)                 | Cloud Run service name               |
 | `cr_region_str`                 | Yes     | String          | (None)                 | GCP region to run the CR service in  |
