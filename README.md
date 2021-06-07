@@ -19,6 +19,8 @@ This module deploys a Cloud Run service behind a GCP load balancer with Cloud Ar
 | `cloud_armor_preview_bool`      | Yes     | bool            | (None)                 | Boolean on whether Cloud Armor rules should run in preview mode |
 | `cloud_armor_expr_rules`        | No      | list(map(any))  | OWASP Rules            | List of dictionaries that describe the Cloud Armor rules |
 | `cloud_armor_versioned_expr_rules` | No   | list(map(any))  | Allow Allow (last rule) | List of dictionaries that describe Cloud Armor versioned_expr rules |
+| `cr_allow_all_users_bool`       | No      | bool            | true                   | Determines if GCP `allUsers` has access to CR service |
+| `cr_allow_all_authenticated_users_bool` | No      | bool    | false                  | Determines if GCP `allAuthenticatedUsers` has access to CR service |
 
 
 ## Output

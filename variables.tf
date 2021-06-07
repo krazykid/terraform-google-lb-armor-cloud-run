@@ -113,3 +113,14 @@ variable "cloud_armor_versioned_expr_rules" {
   ]
 }
 
+variable "cr_allow_all_users_bool" {
+  type = bool
+  description = "Allow GCP `allUsers` access to CR service"
+  default = true
+}
+
+variable "cr_allow_all_authenticated_users_bool" {
+  type = bool
+  description = "Allow GCP `allAuthenticatedUsers` access to CR service"
+  default = false
+}

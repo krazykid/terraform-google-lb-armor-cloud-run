@@ -127,6 +127,36 @@ data "google_cloud_run_service" "cr_service" {
   ]
 }
 
+resource "google_cloud_run_service_iam_member" "cloud_run_invoker_all_users" {
+  project  = data.google_project.project.project_id
+  location = var.cr_region_str
+  service  = var.cr_service_name_str
+  role     = "roles/run.invoker"
+  member   = "allUsers"
+  count = var.cr_allow_all_users_bool ? 1 : 0
+
+  depends_on = [
+    null_resource.build_cr_service,
+    data.google_cloud_run_service.cr_service
+  ]
+}
+
+resource "google_cloud_run_service_iam_member" "cloud_run_invoker_all_authenticated_users" {
+  project  = data.google_project.project.project_id
+  location = var.cr_region_str
+  service  = var.cr_service_name_str
+  role     = "roles/run.invoker"
+  member   = "allAuthenticatedUsers"
+  count = var.cr_allow_all_authenticated_users_bool ? 1 : 0
+
+  depends_on = [
+    null_resource.build_cr_service,
+    data.google_cloud_run_service.cr_service
+  ]
+}
+
+
+
 #=============================================================================
 #
 # Get an IP
