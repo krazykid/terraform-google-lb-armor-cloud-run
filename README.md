@@ -24,7 +24,8 @@ This module deploys a Cloud Run service behind a GCP load balancer with Cloud Ar
 
 
 ## Output
-|Output Variable Name|Description|
-|:------------------:|:------------------------------------------------------------------------------------------------|
-| cr_public_address  | Public IP address of the load balancer. You should point your DNS A records to this IP address  |
-| cr_service_url_map | Internal Cloud Run service URL                                                                  |
+| Output Variable Name         | Description |
+|:----------------------------:|:------------------------------------------------------------------------------------------------|
+| `cr_public_address`          | Public IP address of the load balancer. You should point your DNS A records to this IP address  |
+| `cr_service_url_map`         | Internal Cloud Run service URL                                                                  |
+| `svc_acct_email`             | Email address of CR service account |

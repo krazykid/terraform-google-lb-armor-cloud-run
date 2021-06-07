@@ -5,3 +5,7 @@ output "cr_public_address" {
 output "cr_service_url_map" {
   value = google_compute_url_map.cr_service_url_map.id
 }
+
+output "svc_acct_email" {
+  value = local.svc_acct_email
+}
