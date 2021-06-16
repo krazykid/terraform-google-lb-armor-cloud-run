@@ -22,12 +22,14 @@ locals {
 
 
 resource "google_project_service" "project_services" {
-  project    = data.google_project.project.project_id
-  depends_on = [data.google_project.project]
+  project = data.google_project.project.project_id
+  depends_on = [
+  data.google_project.project]
 
   for_each                   = toset(local.gcp_services)
   service                    = each.value
-  disable_dependent_services = true
+  disable_dependent_services = var.disable_services
+  disable_on_destroy         = var.disable_services
 }
 
 
@@ -133,7 +135,7 @@ resource "google_cloud_run_service_iam_member" "cloud_run_invoker_all_users" {
   service  = var.cr_service_name_str
   role     = "roles/run.invoker"
   member   = "allUsers"
-  count = var.cr_allow_all_users_bool ? 1 : 0
+  count    = var.cr_allow_all_users_bool ? 1 : 0
 
   depends_on = [
     null_resource.build_cr_service,
@@ -147,7 +149,7 @@ resource "google_cloud_run_service_iam_member" "cloud_run_invoker_all_authentica
   service  = var.cr_service_name_str
   role     = "roles/run.invoker"
   member   = "allAuthenticatedUsers"
-  count = var.cr_allow_all_authenticated_users_bool ? 1 : 0
+  count    = var.cr_allow_all_authenticated_users_bool ? 1 : 0
 
   depends_on = [
     null_resource.build_cr_service,

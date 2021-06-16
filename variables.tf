@@ -114,13 +114,19 @@ variable "cloud_armor_versioned_expr_rules" {
 }
 
 variable "cr_allow_all_users_bool" {
-  type = bool
+  type        = bool
   description = "Allow GCP `allUsers` access to CR service"
-  default = true
+  default     = true
 }
 
 variable "cr_allow_all_authenticated_users_bool" {
-  type = bool
+  type        = bool
   description = "Allow GCP `allAuthenticatedUsers` access to CR service"
-  default = false
+  default     = false
+}
+
+variable "disable_services" {
+  type        = bool
+  default     = false
+  description = "Whether or not to disable services during `destroy`. Remember when disabling GCP services, all resources in that service get deleted"
 }
