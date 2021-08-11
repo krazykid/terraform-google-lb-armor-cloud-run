@@ -79,6 +79,7 @@ locals {
   build_base_env_vars = {
     PROJECT_ID      = data.google_project.project.project_id
     CR_SERVICE_NAME = var.cr_service_name_str
+    CR_SERVICE_PORT = var.cr_service_port
     REGION          = var.cr_region_str
     SERVICE_ACCT    = local.svc_acct_email
     TAG             = "initial"

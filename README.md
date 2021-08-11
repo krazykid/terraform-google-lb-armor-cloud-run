@@ -22,6 +22,7 @@ This module deploys a Cloud Run service behind a GCP load balancer with Cloud Ar
 | `cr_allow_all_users_bool`       | No      | bool            | true                   | Determines if GCP `allUsers` has access to CR service |
 | `cr_allow_all_authenticated_users_bool` | No      | bool    | false                  | Determines if GCP `allAuthenticatedUsers` has access to CR service |
 | `disable_services`              | No      | bool            | `false`                | Whether or not to disable services during `destroy`. Remember when disabling GCP services, all resources in that service get deleted |
+| `cr_service_port`               | Yes     | Number          | (None)                 | Port the container used by CR listens to |
 
 
 ## Output

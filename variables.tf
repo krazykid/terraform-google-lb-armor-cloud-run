@@ -13,6 +13,11 @@ variable "cr_service_name_str" {
   description = "Cloud Run service name"
 }
 
+variable "cr_service_port" {
+  type        = number
+  description = "Port the container used by CR listens to"
+}
+
 variable "cr_region_str" {
   type        = string
   description = "GCP region to run the CR service in"
